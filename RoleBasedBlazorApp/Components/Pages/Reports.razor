@@ -1,0 +1,44 @@
+@page "/reports"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin,Manager")]
+
+<PageTitle>Reports</PageTitle>
+
+<h1>Reports</h1>
+
+<div class="reports-content mt-4">
+    <p class="alert alert-info">
+        This page is accessible to <strong>Admin</strong> and <strong>Manager</strong> roles.
+    </p>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="report-card">
+                <h4>Sales Report</h4>
+                <p>Monthly sales performance analysis</p>
+                <button class="btn btn-primary">Generate Report</button>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="report-card">
+                <h4>User Activity Report</h4>
+                <p>Track user engagement and activity</p>
+                <button class="btn btn-primary">Generate Report</button>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="report-card">
+                <h4>Financial Report</h4>
+                <p>Revenue and expense summary</p>
+                <button class="btn btn-primary">Generate Report</button>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="report-card">
+                <h4>Performance Metrics</h4>
+                <p>System and application performance</p>
+                <button class="btn btn-primary">Generate Report</button>
+            </div>
+        </div>
+    </div>
+</div>

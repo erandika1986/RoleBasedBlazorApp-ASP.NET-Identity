@@ -1,0 +1,31 @@
+@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Components.Authorization
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <AuthorizeView>
+                <Authorized Context="authContext">
+                    <span>Welcome, @authContext.User.Identity?.Name!</span>
+                    <span class="role-badge">Role: @GetUserRole(authContext)</span>
+                    <LogoutButton />
+                </Authorized>
+            </AuthorizeView>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    private string GetUserRole(AuthenticationState authState)
+    {
+        return authState.User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value ?? "Unknown";
+    }
+}

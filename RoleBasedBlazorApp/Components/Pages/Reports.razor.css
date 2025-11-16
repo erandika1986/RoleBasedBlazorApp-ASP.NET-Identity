@@ -1,0 +1,17 @@
+.report-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #0d6efd;
+}
+
+.report-card h4 {
+    color: #0d6efd;
+    margin-bottom: 0.5rem;
+}
+
+.report-card p {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}

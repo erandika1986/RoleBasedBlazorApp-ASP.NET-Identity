@@ -1,0 +1,22 @@
+.login-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    min-width: 400px;
+}
+
+@media (max-width: 640px) {
+    .login-container {
+        min-width: 90%;
+        margin: 1rem;
+    }
+}

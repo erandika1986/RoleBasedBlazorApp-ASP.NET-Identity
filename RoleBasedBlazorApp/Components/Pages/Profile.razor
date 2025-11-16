@@ -1,0 +1,59 @@
+@page "/profile"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@attribute [Authorize]
+
+<PageTitle>Profile</PageTitle>
+
+<h1>User Profile</h1>
+
+<AuthorizeView>
+    <Authorized Context="authContext">
+        <div class="profile-content mt-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4>Profile Information</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-3"><strong>Username:</strong></div>
+                        <div class="col-md-9">@authContext.User.Identity?.Name</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3"><strong>Role:</strong></div>
+                        <div class="col-md-9">
+                            <span class="badge bg-primary">@GetUserRole(authContext)</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3"><strong>Status:</strong></div>
+                        <div class="col-md-9">
+                            <span class="badge bg-success">Active</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"><strong>Last Login:</strong></div>
+                        <div class="col-md-9">@DateTime.Now.ToString("MMM dd, yyyy HH:mm")</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h4>Account Settings</h4>
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-outline-primary">Change Password</button>
+                    <button class="btn btn-outline-secondary ms-2">Edit Profile</button>
+                </div>
+            </div>
+        </div>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    private string GetUserRole(AuthenticationState authState)
+    {
+        return authState.User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value ?? "Unknown";
+    }
+}

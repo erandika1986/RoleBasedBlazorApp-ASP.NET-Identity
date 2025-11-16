@@ -1,0 +1,44 @@
+@page "/"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<PageTitle>Home</PageTitle>
+
+<h1>Welcome to Role-Based Blazor App</h1>
+
+<AuthorizeView>
+    <Authorized Context="authContext">
+        <div class="welcome-card">
+            <h3>Hello, @authContext.User.Identity?.Name!</h3>
+            <p>Your role: <strong>@GetUserRole(authContext)</strong></p>
+            
+            <div class="role-info mt-4">
+                <h5>What you can access:</h5>
+                <ul>
+                    <li>Home Page (All authenticated users)</li>
+                    <li>Profile Page (All authenticated users)</li>
+                    
+                    <AuthorizeView Roles="Admin,Manager">
+                        <Authorized>
+                            <li>Dashboard (Admin & Manager)</li>
+                            <li>Reports (Admin & Manager)</li>
+                        </Authorized>
+                    </AuthorizeView>
+                    
+                    <AuthorizeView Roles="Admin">
+                        <Authorized>
+                            <li>Admin Panel (Admin only)</li>
+                        </Authorized>
+                    </AuthorizeView>
+                </ul>
+            </div>
+        </div>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    private string GetUserRole(AuthenticationState authState)
+    {
+        return authState.User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value ?? "Unknown";
+    }
+}

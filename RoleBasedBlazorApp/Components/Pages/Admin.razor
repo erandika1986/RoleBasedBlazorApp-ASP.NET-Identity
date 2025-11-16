@@ -1,0 +1,62 @@
+@page "/admin"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
+
+<PageTitle>Admin Panel</PageTitle>
+
+<h1>Admin Panel</h1>
+
+<div class="admin-content mt-4">
+    <div class="alert alert-warning">
+        <strong>Admin Access Only!</strong> This page is restricted to administrators.
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-header">
+            <h4>System Settings</h4>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li>User Management</li>
+                <li>Role Configuration</li>
+                <li>System Logs</li>
+                <li>Security Settings</li>
+                <li>Database Backup</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-header">
+            <h4>Recent Activities</h4>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Action</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>manager</td>
+                        <td>Viewed Dashboard</td>
+                        <td>2 minutes ago</td>
+                    </tr>
+                    <tr>
+                        <td>user</td>
+                        <td>Updated Profile</td>
+                        <td>15 minutes ago</td>
+                    </tr>
+                    <tr>
+                        <td>admin</td>
+                        <td>System Login</td>
+                        <td>1 hour ago</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
